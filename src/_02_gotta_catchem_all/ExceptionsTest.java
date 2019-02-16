@@ -17,8 +17,8 @@ class ExceptionsTest {
 		try {
 			vars[0] = 4;
 			assertArrayEquals(vars, new int[] {4, 1, 2, 3});
-			vars[4] = 5;
-			fail("IndexOutOfBoundsException not thrown");
+			vars[5] = 5;
+			fail("IndexOutOfBoundsException not thrown"); // fails the test and puts up a RED bar
 		}catch(IndexOutOfBoundsException e) {
 			e.printStackTrace();
 			assertArrayEquals(vars, new int[] {4, 1, 2, 3});
@@ -33,6 +33,15 @@ class ExceptionsTest {
 	@Test
 	public void testDivideByZeroException() {
 		
+			try {
+				em.quotient(10, 0.0);
+				fail("IllegalArgumentException not thrown");
+			} catch (IllegalArgumentException c) {
+				// TODO Auto-generated catch block
+				c.printStackTrace();
+			}
+		
+		
 	}
 	
 	//4. In the ExceptionMethods class, write a method called reverseString that takes a
@@ -42,7 +51,12 @@ class ExceptionsTest {
 	//5. Complete the JUnit test method to test the reverseStringMethod.
 	@Test
 	public void testReverseString() {
-		
+		try {
+			em.reverseString("");
+			fail("IllegalStateException");
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
